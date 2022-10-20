@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  database:
+    image: 'mysql:latest'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tgbot
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - tg-bot-db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: tgbot_db_container
+    depends_on:
+      - database
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: database
+
+volumes:
+  tg-bot-db:
