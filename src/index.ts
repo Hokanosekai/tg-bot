@@ -1,3 +1,4 @@
+require("dotenv").config({ path: `${process.cwd()}/.env` });
 import { DiscordClient } from "./structures/discord-client";
 import { Logger } from "./utils/logger";
 
