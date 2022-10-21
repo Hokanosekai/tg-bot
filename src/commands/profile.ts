@@ -28,9 +28,9 @@ export default new Command({
     if (!targetUser) return interaction.reply({ content: "This user is not in the database", ephemeral: true });
 
     const nextLevel = Level[targetUser.level + 1];
-    const percentage = Math.round((targetUser.messagesCount * 100) / nextLevel[0]);
+    const percentage = Math.round(((targetUser.messagesCount) * 100) / nextLevel[0]);
     const nbEmojis = Math.round((percentage * 20) / 100);
-    
+
     const guild = await client.guilds.fetch("744192330344431797");
 
     const fillEmoji = guild.emojis.cache.find(emoji => emoji.name === "tgs");

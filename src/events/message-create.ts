@@ -7,7 +7,6 @@ export default new Event({
   event: "messageCreate",
   isLoaded: true,
   execute: async (message) => {
-    console.log(message);
     if (message.author.bot) return;
 
     if (await client.database.channel.count({
@@ -20,8 +19,6 @@ export default new Event({
       .addSelect("RAND()", "random")
       .orderBy("random")
       .getOne();
-
-    console.log(insult);
 
     if (insult) {
       await message.reply({

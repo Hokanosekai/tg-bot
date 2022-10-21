@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  bot: 
+    container_name: tgbot
+    image: tgbot
+    build: 
+      context: .
+      target: production
+    restart: always
+    volumes:
+      - ./src:/app/src
+    stdin_open: true
+    tty: true
+    environment:
+      DB_HOST: database
+
+  database:
+    container_name: database-tgbot
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tgbot
+    volumes:
+      - ./database:/var/lib/mysql
